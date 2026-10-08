@@ -1,26 +1,42 @@
-.anchor
+# =====================================
+# 1. 依赖包与编译构建产物
+# =====================================
+node_modules/
+target/
+.anchor/
 .DS_Store
-target
-**/*.rs.bk
-node_modules
-test-ledger
-.yarn
-.surfpool
+.yarn/
+.yarn/install-state.gz
+test-ledger/
+.surfpool/
+dist/
+build/
 
-# 隐私与密钥屏蔽
+# =====================================
+# 2. 环境变量与本地配置
+# =====================================
+.env
+.env.*
+!.env.example
+
+# =====================================
+# 3. 核心安全防护：严格屏蔽私钥与钱包文件
+# =====================================
+# 默认屏蔽所有 .json 文件，但显式白名单放行必要的项目配置文件
 *.json
 !package.json
 !package-lock.json
+!tsconfig.json
 !tsconfig*.json
 !Anchor.toml
 !.oxlintrc.json
-.env
-.env.*
-*.keypair
 
-# 忽略本地私钥及敏感配置文件
-*.json
-!package.json
-!tsconfig.json
+# 常见本地私钥/钱包文件名（无论后缀名是什么，坚决不准提交）
 id.json
-.env
+*-keypair.json
+*.keypair
+*.secret
+wallet.json
+deploy-key.json
+admin.json
+
