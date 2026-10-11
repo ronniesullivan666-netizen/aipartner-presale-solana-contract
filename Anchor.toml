@@ -15,3 +15,4 @@ url = "https://anchor.projectserum.com"
 [provider]
 cluster = "https://mainnet.helius-rpc.com/?api-key=37673d77-fa71-41d2-9572-b8d4defa5cee"
 wallet = "/root/.config/solana/secure-id.json"
+

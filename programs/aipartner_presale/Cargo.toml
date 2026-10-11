@@ -17,6 +17,17 @@ no-log-ix-name = []
 idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 
 [dependencies]
-anchor-lang = "0.30.1"
-anchor-spl = "0.30.1"
-solana-program = "=2.1.14"
+anchor-lang = { workspace = true }
+anchor-spl = { workspace = true }
+solana-program = { workspace = true }
+borsh = { workspace = true }
+borsh-derive = { workspace = true }
+indexmap = { workspace = true }
+hashbrown = { workspace = true }
+toml = { workspace = true }
+toml_edit = { workspace = true }
+proc-macro-crate = { workspace = true }
+blake3 = { workspace = true }
+zeroize_derive = { workspace = true }
+jobserver = { workspace = true }
+unicode-segmentation = { workspace = true }
