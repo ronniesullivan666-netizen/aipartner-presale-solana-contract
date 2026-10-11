@@ -7,7 +7,7 @@ resolution = true
 skip-lint = false
 
 [programs.mainnet]
-aipartner_presale = "iBFadjvW7WbQCbRbHs2LBHv4oHS4a5rPKU3DoomtYxG"
+aipartner_presale = "7P31pbAExHjzeyr6Y9y2fjmnjLezd4sKDZ5rfvwzZxet"
 
 [registry]
 url = "https://anchor.projectserum.com"

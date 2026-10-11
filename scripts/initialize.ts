@@ -50,7 +50,7 @@ async function main() {
   }
   const idl = JSON.parse(fs.readFileSync(idlPath, "utf-8"));
 
-  const programId = new PublicKey("iBFadjvW7WbQCbRbHs2LBHv4oHS4a5rPKU3DoomtYxG");
+  const programId = new PublicKey("7P31pbAExHjzeyr6Y9y2fjmnjLezd4sKDZ5rfvwzZxet");
   idl.address = programId.toString();
 
   const program = new Program(idl as Idl, provider);

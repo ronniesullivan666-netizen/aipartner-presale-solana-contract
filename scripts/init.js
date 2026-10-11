@@ -23,7 +23,7 @@ async function main() {
   console.log("📍 管理员钱包:", provider.wallet.publicKey.toString());
 
   // 3. 实例化 Program
-  const programId = new PublicKey("iBFadjvW7WbQCbRbHs2LBHv4oHS4a5rPKU3DoomtYxG");
+  const programId = new PublicKey("7P31pbAExHjzeyr6Y9y2fjmnjLezd4sKDZ5rfvwzZxet");
   const program = new Program(idl, provider);
   console.log("📍 合约地址:", program.programId.toString());
 

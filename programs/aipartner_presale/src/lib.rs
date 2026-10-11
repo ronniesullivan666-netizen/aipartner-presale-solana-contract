@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
-declare_id!("iBFadjvW7WbQCbRbHs2LBHv4oHS4a5rPKU3DoomtYxG");
+declare_id!("7P31pbAExHjzeyr6Y9y2fjmnjLezd4sKDZ5rfvwzZxet");
 
 #[program]
 pub mod aipartner_presale {
