@@ -33,6 +33,7 @@ build/
 
 # 常见本地私钥/钱包文件名（无论后缀名是什么，坚决不准提交）
 id.json
+secure-id.json
 *-keypair.json
 *.keypair
 *.secret

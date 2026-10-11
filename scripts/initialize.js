@@ -53,7 +53,7 @@ async function main() {
     const provider = anchor.AnchorProvider.env();
     anchor.setProvider(provider);
 
-    const programId = new web3_js_1.PublicKey("AgBSRTVFzdjV9ChfqEEJhCca2mn11Unw1vtZsP3NhqmN");
+    const programId = new web3_js_1.PublicKey("iBFadjvW7WbQCbRbHs2LBHv4oHS4a5rPKU3DoomtYxG");
     const program = new anchor_1.Program(idl, provider);
 
     console.log("Using Program ID:", program.programId.toString());

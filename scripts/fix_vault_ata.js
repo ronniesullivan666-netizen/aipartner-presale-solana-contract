@@ -1,8 +1,8 @@
 const { Connection, Keypair, PublicKey, Transaction, TransactionInstruction } = require("@solana/web3.js");
 const fs = require("fs");
 
-// 1. 读取管理员 Keypair (确保路径指向你的 admin 钱包 keypair 文件，如 id.json 或 admin.json)
-const walletPath = process.env.HOME + "/.config/solana/id.json"; 
+// 1. 读取管理员 Keypair (确保路径指向你的 admin 钱包 keypair 文件，如 secure-id.json 或 admin.json)
+const walletPath = process.env.HOME + "/.config/solana/secure-id.json"; 
 const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync(walletPath, "utf-8")));
 const admin = Keypair.fromSecretKey(secretKey);
 

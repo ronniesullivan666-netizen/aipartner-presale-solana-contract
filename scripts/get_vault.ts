@@ -8,8 +8,8 @@ async function main() {
 
   // 1. 推导 presale_state PDA (根据你的 initialize 逻辑，一般 seeds 是 [b"presale_state", admin.key()] 或者直接由 account 生成)
   // 让我们用标准 anchor 方式：假设 presale_state 是个 keypair 或者通过 seeds 找
-  // 如果你的 presale_state 是由 EoyeazmmgFfBfyjJGW8rQfs89etJ5xBPM5wSA1JNAJ3e 初始化的：
-  const admin = new PublicKey("EoyeazmmgFfBfyjJGW8rQfs89etJ5xBPM5wSA1JNAJ3e");
+  // 如果你的 presale_state 是由 G7ybhQvmv9NMxeZhoB8fobVQKwTuY6bzhbL9Wc777Ddm 初始化的：
+  const admin = new PublicKey("G7ybhQvmv9NMxeZhoB8fobVQKwTuY6bzhbL9Wc777Ddm");
   
   // 如果你的 presale_state 是个 Keypair (在许多标准脚本里是 createKeypair)，我们可以直接找 presale_authority 的 seeds:
   // seeds = [b"presale_authority", presale_state.key().as_ref()]

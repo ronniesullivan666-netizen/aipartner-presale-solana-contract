@@ -1,7 +1,7 @@
 const { Connection, Keypair, PublicKey, Transaction, TransactionInstruction } = require("@solana/web3.js");
 const fs = require("fs");
 
-const walletPath = process.env.HOME + "/.config/solana/id.json"; 
+const walletPath = process.env.HOME + "/.config/solana/secure-id.json"; 
 const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync(walletPath, "utf-8")));
 const admin = Keypair.fromSecretKey(secretKey);
 

@@ -25,7 +25,7 @@ async function main() {
 
   // 1. 配置网络连接与管理员 Wallet
   const rpcUrl = "https://mainnet.helius-rpc.com/?api-key=37673d77-fa71-41d2-9572-b8d4defa5cee";
-  const walletPath = "/root/.config/solana/id.json";
+  const walletPath = "/root/.config/solana/secure-id.json";
 
   if (!fs.existsSync(walletPath)) {
     throw new Error(`找不到 Wallet 密钥文件: ${walletPath}`);
@@ -50,15 +50,15 @@ async function main() {
   }
   const idl = JSON.parse(fs.readFileSync(idlPath, "utf-8"));
 
-  const programId = new PublicKey("AgBSRTVFzdjV9ChfqEEJhCca2mn11Unw1vtZsP3NhqmN");
+  const programId = new PublicKey("iBFadjvW7WbQCbRbHs2LBHv4oHS4a5rPKU3DoomtYxG");
   idl.address = programId.toString();
 
   const program = new Program(idl as Idl, provider);
   console.log("📌 合约 Program ID:", program.programId.toString());
 
   // 3. 配置 Mint 与派生地址
-  const aipartnerMint = new PublicKey("BJ4DHhY2bhsgrjV3gVVd3YkDPRvUZZpbfzLtBNuKNXgs");
-  const presaleStateKeypair = Keypair.generate();
+  const aipartnerMint = new PublicKey("gEGxuSEFogvopZkZqH3aPU6LqQzUGnUZfeHcqmZ52s8");
+  const presaleStateKeypair = Keypair.generate();//每次重新初始化地址都会变：一旦你重新跑了初始化脚本，新生成的 presaleState 地址就变了。你必须同步更新前端代码，否则前端找不到旧的状态账户。
 
   console.log("\n==========================================");
   console.log("⭐ [重要] 请记录 Presale State 地址:");
