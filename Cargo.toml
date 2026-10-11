@@ -4,13 +4,12 @@ members = [
 ]
 resolver = "1"
 
-
 [workspace.package]
 edition = "2021"
 rust-version = "1.89.0"
 
 [workspace.dependencies]
-indexmap = "2.2.6"
+indexmap = "=2.2.6"
 hashbrown = "=0.14.5"
 block-buffer = "=0.10.4"
 cpufeatures = "=0.2.17"
@@ -22,7 +21,6 @@ zeroize = "=1.6.0"
 zeroize_derive = "=1.4.2"
 toml_datetime = "=0.6.8"
 getrandom = "=0.2.17"
-
 
 [profile.release]
 overflow-checks = false
