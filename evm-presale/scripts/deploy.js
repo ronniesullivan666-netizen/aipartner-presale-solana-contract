@@ -1,7 +1,8 @@
 import hre from "hardhat";
 
 async function main() {
-  const FEE_RECEIVER = "0xf6B3d16c273Fb35b9D6454B7FbE2F35DdC18Bf66"; // 你的实际收款地址
+  const FEE_RECEIVER = "0xc322cd9C8b583cd67A2293Bbf25c946F9934dF62"; // 实际收款地址
+  const RELAYER_ADDRESS = "0xc322cd9C8b583cd67A2293Bbf25c946F9934dF62"; // 后端代扣服务器的钱包地址（你可以根据需要修改为你的后端热钱包地址）
 
   // 根据传入的 --network 参数动态匹配 USDT 合约地址
   const networkName = hre.network.name;
@@ -18,9 +19,11 @@ async function main() {
   console.log(`正在部署 AIPartnerPresale 到 ${networkName} 网络...`);
   console.log(`使用的 USDT 地址: ${USDT_ADDRESS}`);
   console.log(`收款地址: ${FEE_RECEIVER}`);
+  console.log(`代扣执行者 (Relayer) 地址: ${RELAYER_ADDRESS}`);
 
   const AIPartnerPresale = await hre.ethers.getContractFactory("AIPartnerPresale");
-  const presale = await AIPartnerPresale.deploy(USDT_ADDRESS, FEE_RECEIVER);
+  // 传入 3 个构造函数参数
+  const presale = await AIPartnerPresale.deploy(USDT_ADDRESS, FEE_RECEIVER, RELAYER_ADDRESS);
 
   await presale.waitForDeployment();
   const address = await presale.getAddress();

@@ -58,7 +58,7 @@ async function main() {
 
   // 3. 配置 Mint 与派生地址
   const aipartnerMint = new PublicKey("gEGxuSEFogvopZkZqH3aPU6LqQzUGnUZfeHcqmZ52s8");
-  const presaleStateKeypair = Keypair.generate();//每次重新初始化地址都会变：一旦你重新跑了初始化脚本，新生成的 presaleState 地址就变了。你必须同步更新前端代码，否则前端找不到旧的状态账户。
+  const presaleStateKeypair = Keypair.generate();
 
   console.log("\n==========================================");
   console.log("⭐ [重要] 请记录 Presale State 地址:");
@@ -94,28 +94,37 @@ async function main() {
 
   const rate = new anchor.BN(100);
 
-  // 5. 发送交易
+  // 5. 发送交易（严格按照 Rust 源码的账户顺序排列 keys）
   console.log("⌛ 正在提交初始化交易到 Solana 主网...");
-  const tx = await program.methods
-    .initialize(rate)
-    .accounts({
-      admin: wallet.publicKey,
-      aipartnerMint: aipartnerMint,
-      vaultAipartnerAccount: vaultAipartnerAccount,
-      presaleAuthority: presaleAuthority,
-      presaleState: presaleStateKeypair.publicKey,
-      systemProgram: anchor.web3.SystemProgram.programId,
-      tokenProgram: TOKEN_PROGRAM_ID,
+
+  const discriminator = Buffer.from([175, 175, 109, 31, 13, 152, 155, 237]);
+  const data = Buffer.alloc(8 + 8);
+  discriminator.copy(data, 0);
+  data.writeBigUInt64LE(BigInt(rate.toString()), 8);
+
+  const tx = new anchor.web3.Transaction().add(
+    ...preInstructions,
+    new anchor.web3.TransactionInstruction({
+      programId: program.programId,
+      keys: [
+        { pubkey: wallet.publicKey, isSigner: true, isWritable: true },                  // admin
+        { pubkey: aipartnerMint, isSigner: false, isWritable: false },                    // aipartner_mint
+        { pubkey: vaultAipartnerAccount, isSigner: false, isWritable: true },             // vault_aipartner_account
+        { pubkey: presaleAuthority, isSigner: false, isWritable: false },                 // presale_authority
+        { pubkey: presaleStateKeypair.publicKey, isSigner: true, isWritable: true },      // presale_state
+        { pubkey: anchor.web3.SystemProgram.programId, isSigner: false, isWritable: false }, // system_program
+        { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },                 // token_program
+      ],
+      data: data,
     })
-    .preInstructions(preInstructions)
-    .signers([presaleStateKeypair])
-    .rpc();
+  );
+
+  const txHash = await provider.sendAndConfirm(tx, [presaleStateKeypair]);
 
   console.log("\n🎉 初始化成功！");
-  console.log("交易签名 (TxHash):", tx);
+  console.log("交易签名 (TxHash):", txHash);
 }
 
-// 确保显式调用 main()，并正确捕获 Promise 错误
 main()
   .then(() => {
     process.exit(0);

@@ -11,7 +11,7 @@
           "type": "address"
         }
       ],
-      "name": "balanceof",
+      "name": "balanceOf",
       "outputs": [
         {
           "internalType": "uint256",
@@ -36,13 +36,7 @@
         }
       ],
       "name": "transfer",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
@@ -65,13 +59,7 @@
         }
       ],
       "name": "transferFrom",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
